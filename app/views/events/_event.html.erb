@@ -4,7 +4,7 @@
 
     <% if @user_signed_in %>
       <% if @attended_events.include? event.id %>
-        <%= link_to "Unattend", invitation_path(event.invitations[0].id), method: :delete, class: "button is-danger media-right is-pulled-right" %>
+        <%= link_to "Unattend", invitation_path(event.invitations.find_by(user_id: @user.id).id), method: :delete, class: "button is-danger media-right is-pulled-right" %>
       <% else %>
         <%= link_to "Attend", invitations_path(invitation: { event_id: event.id, user_id: @user.id }), method: :post, class: "button is-primary media-right is-pulled-right" %>
       <% end %>

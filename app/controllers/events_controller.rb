@@ -37,7 +37,9 @@ class EventsController < ApplicationController
   def get_attended_events
     if @user_signed_in
       @user = User.find_by(id: session[:user_id])
-      @attended_events = Invitation.where(user_id: @user.id).pluck(:event_id)
+      if @user
+        @attended_events = Invitation.where(user_id: @user.id).pluck(:event_id)
+      end
     end
   end
 

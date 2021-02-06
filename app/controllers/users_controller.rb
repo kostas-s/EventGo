@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_signed_in, only: [:show]
+
   def new
     @user = User.new
   end
@@ -12,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(id: session[:user_id])
   end
 
   def log_in
@@ -26,7 +28,7 @@ class UsersController < ApplicationController
     else
       session[:user_id] = nil
       respond_to do |format|
-        format.html { redirect_to '/', alert: "Username not found"}
+        format.html { redirect_to '/', alert: "Username not found" }
         format.json { head :no_content }
       end
     end
@@ -37,9 +39,9 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       respond_to do |format|
-        format.html { redirect_to '/', notice: "Username successfully created"}
+        format.html { redirect_to '/', notice: "Username successfully created" }
         format.json { head :no_content }
-    end
+      end
     else
       respond_to do |format|
         format.html { redirect_to '/', alert: "Username " + @user.errors[:name][0] }
@@ -48,9 +50,16 @@ class UsersController < ApplicationController
     end
   end
 
-
   private
+
   def user_params
     params.require(:user).permit(:name)
   end
+
+  def require_signed_in
+    if !@user_signed_in
+      respond_to { |format| format.html { redirect_to '/sessions/new', alert: "You have to be signed in!" } }
+    end
+  end
+
 end
