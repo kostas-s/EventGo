@@ -1,8 +1,15 @@
+<article class="panel is-dark">
+  <p class="panel-heading">
+    Upcoming Attended Events
+  </p>
+  <% user.attended_events.where('date >= ?', Date.today).each do |evt| %>
+    <%= link_to evt.title, event_path(evt), class: "panel-block" %>
+  <% end %></article>
 <article class="panel">
   <p class="panel-heading">
-    <%= user.name %> Attended Events
+    Past Attended Events
   </p>
-  <% user.attended_events.each do |evt| %>
+  <% user.attended_events.where('date < ?', Date.today).each do |evt| %>
     <%= link_to evt.title, event_path(evt), class: "panel-block" %>
   <% end %>
 </article>

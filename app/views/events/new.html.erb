@@ -2,20 +2,20 @@
   <div class="columns">
     <div class="column is-half is-offset-one-quarter">
       <h1 class="title is-2 has-text-centered">New Event</h1>
-      <%= form_with model:@event do |f| %>
-        <%= f.text_field :title, class:"input is-primary", placeholder:"Title" %>
+      <%= form_with model: @event do |f| %>
+        <%= f.text_field :title, class: "input is-primary", placeholder: "Title" %>
         <br/>
         <br/>
-        <%= f.text_area :description, class:"textarea is-primary", placeholder:"Description" %>
+        <%= f.text_area :description, class: "textarea is-primary", placeholder: "Description" %>
         <br/>
         <br/>
-        <%= f.text_field :location, class:"input is-primary", placeholder:"Location" %>
+        <%= f.text_field :location, class: "input is-primary", placeholder: "Location" %>
         <br/>
         <br/>
-        <%= f.date_field :date, class:"input is-primary", placeholder:"Date" %>
+        <%= f.datetime_field :date, class: "input is-primary", placeholder: "Date" %>
         <br/>
         <br/>
-        <%= f.submit class:"button is-primary", style:"width: 100%"%>
+        <%= f.submit class: "button is-primary", style: "width: 100%" %>
       <% end %>
     </div>
   </div>
