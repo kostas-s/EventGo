@@ -1,24 +1,34 @@
-# README
+# EventGo Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+A platform where users can host upcoming events and other users can attend. Signing up requires only a username so this
+is something that has to be changed for any real-world application but it makes testing very easy for the purpose it is
+made. Users can check their hosted/attended events in their profiles.
 
-* Ruby version
+## Requirements
 
-* System dependencies
+EventGo is built using `Ruby v2.6.3` on `Rails 6.1.1`
 
-* Configuration
+## Gems
 
-* Database creation
+Database uses `pg` gem, styled with `bulma-rails` gem
 
-* Database initialization
+## Setup
 
-* How to run the test suite
+After `git clone` run `bundle install` to install needed gems and dependencies.
 
-* Services (job queues, cache servers, search engines, etc.)
+Run `rails db:create`, `rails db:migrate`, `rails db:seed` to create database and seed with my pre-written data for
+testing.
 
-* Deployment instructions
+If you run into any trouble at the above step, you probably need to install `Postgresql` via `Homebrew` and start the
+service on your machine.
 
-* ...
+## Deployed at
+
+* https://eventgo-preview.herokuapp.com/
+
+---------------------------------------------------
+All code is written from scratch by Kostas. Assignment for [The Odin Project](https://www.theodinproject.com/).
+
+2021 - MIT License
