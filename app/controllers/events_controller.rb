@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :get_attended_events, only: [:index, :show]
 
   def index
-    @events = Event.all
+    @events = Event.all.order('date')
   end
 
   def new
