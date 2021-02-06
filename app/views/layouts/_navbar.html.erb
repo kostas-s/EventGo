@@ -1,4 +1,4 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar is-info" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -10,19 +10,20 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <%= link_to "Home", events_path, class:"navbar-item" %>
+      <%= link_to "EventGo", events_path, class: "navbar-item" %>
     </div>
 
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
           <% if @user_signed_in %>
-            <%= link_to @user.name, user_path(id: @user.id), class: "button"%>
-            <%= link_to "New event", new_event_path, class:"button is-primary" %>
-            <%= link_to "Sign out", users_sign_out_path, method: :post, class:"button is-light" %>
-            <% else %>
-            <%= link_to "New user", new_user_path, class:"button is-primary" %>
-            <%= link_to "Sign in", sessions_new_path, class:"button is-light" %>
+
+            <%= link_to "New event", new_event_path, class: "button is-dark" %>
+            <%= link_to @user.name, user_path(id: @user.id), class: "button is-light" %>
+            <%= link_to "Sign out", users_sign_out_path, method: :post, class: "button is-light" %>
+          <% else %>
+            <%= link_to "New user", new_user_path, class: "button is-dark" %>
+            <%= link_to "Sign in", sessions_new_path, class: "button is-light" %>
           <% end %>
         </div>
       </div>
