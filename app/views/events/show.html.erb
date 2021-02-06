@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="columns">
+    <div class="column is-half is-offset-one-quarter">
+        <%= render 'layouts/event', event: @event%>
+        <h1 class="is-title is-4">Attendees</h1>
+        <% if @event.attendees %>
+        <% @event.attendees.each do |attendee| %>
+          <%= attendee.name %>
+        <% end %>
+      <% end %>
+    </div></div></div>

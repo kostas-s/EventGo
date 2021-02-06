@@ -1,7 +1,18 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
+# create_table "events", force: :cascade do |t|
+#   t.string "title"
+#   t.string "location"
+#   t.datetime "date"
+#   t.integer "user_id"
+#   t.datetime "created_at", precision: 6, null: false
+#   t.datetime "updated_at", precision: 6, null: false
+#   t.index ["user_id"], name: "index_events_on_user_id"
+# end
 #
-# Examples:
+# create_table "users", force: :cascade do |t|
+#   t.string "name"
+#   t.datetime "created_at", precision: 6, null: false
+#   t.datetime "updated_at", precision: 6, null: false
+# end
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+u = User.create(name:"Kostas")
+e = Event.create(title:"Event Title 1", location:"Athens", date:Date.new, user:u)
