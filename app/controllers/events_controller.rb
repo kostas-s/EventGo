@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
+  before_action :check_user_signed_in
   before_action :require_signed_in, only: [:create, :new]
+  before_action :get_attended_events, only: [:index, :show]
 
   def index
     @events = Event.all
@@ -18,27 +20,38 @@ class EventsController < ApplicationController
     @event = @user.hosted_events.build(event_params)
     if @event.save
       respond_to do |format|
-        format.html { redirect_to '/', notice: "Event posted!"}
+        format.html { redirect_to '/', notice: "Event posted!" }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
         puts @event.errors.full_messages
-        format.html { redirect_to '/', alert: "Event could not be posted..."}
+        format.html { redirect_to '/', alert: "Event could not be posted..." }
         format.json { head :no_content }
       end
     end
   end
 
-
   private
+
+  def get_attended_events
+    if @user_signed_in
+      @user = User.find_by(id: session[:user_id])
+      @attended_events = Invitation.where(user_id: @user.id).pluck(:event_id)
+    end
+  end
+
   def event_params
     params.require(:event).permit(:title, :description, :location, :date, :user_id)
   end
 
+  def check_user_signed_in
+    super
+  end
+
   def require_signed_in
     if !@user_signed_in
-      respond_to {|format| format.html {redirect_to '/sessions/new', alert:  "You have to be signed in!" }}
+      respond_to { |format| format.html { redirect_to '/sessions/new', alert: "You have to be signed in!" } }
     end
   end
 end

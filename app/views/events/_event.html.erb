@@ -1,6 +1,6 @@
 <div class="box">
   <div class="media-content">
-    <span class="title is-4 media-left"><%= link_to event.title, event %></span>
+    <span class="title is-4 media-left"><%= event.title %></span>
 
     <% if @user_signed_in %>
       <% if @attended_events.include? event.id %>

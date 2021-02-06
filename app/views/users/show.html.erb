@@ -1,10 +1,10 @@
 <div class="container">
-<div class="columns">
-<div class="column is-half is-offset-one-quarter">
-  <h1 class="title is-2 has-text-centered"><%= @user.name %> Hosted Events</h1>
-  <% @user.hosted_events.each do |event| %>
-    <%= render 'layouts/event', event: event%>
-  <% end %>
-</div>
-</div>
+  <div class="columns">
+    <div class="column is-half">
+      <%= render 'hosted-events', user: @user %>
+    </div>
+    <div class="column is-half">
+      <%= render 'attended-events', user: @user %>
+    </div>
+  </div>
 </div>

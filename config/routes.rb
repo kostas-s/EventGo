@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :events
+  resources :invitations, only: %i[create destroy]
   root 'events#index'
   get '/events', to: 'events#index'
   get '/sessions/new', to: 'sessions#new'
